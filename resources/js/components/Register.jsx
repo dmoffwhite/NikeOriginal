@@ -4,8 +4,11 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
+
+  const navigate = useNavigate();
 
   const [formValue, setFormValue] = useState({
     name: "",
@@ -38,8 +41,12 @@ function Register() {
         },
       })
       .then((response) => {
-        console.log("response:");
+        console.log('response:');
         console.log(response);
+        const {name} = response.data.data;
+        console.log(name);
+        localStorage.setItem("isLoggedIn", true);
+        localStorage.setItem("username", name);
         navigate("/home");
       })
       .catch((error) => {

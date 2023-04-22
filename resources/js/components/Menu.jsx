@@ -17,7 +17,7 @@ function Menu() {
       localStorage.removeItem("username");
       localStorage.removeItem("token");
       navigate("/home");
-    }  
+    } 
 
     return (
         <>
