@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React, {useState} from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,8 @@ import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 
 function Login() {
+
+  const navigate = useNavigate();
 
   const [formValue, setformValue] = useState({
     email:'',
@@ -30,17 +33,11 @@ function Login() {
     ).then(response => {
       console.log('response:');
       console.log(response);
-      if(formValue.email === "admin@gmail.com"){
-        history.push({
-          pathname: "/admindashboard",
-          state:{token:response.data.token}
-        })
-      }else{
-        history.push({
-          pathname:"/",
-          state:{token:response.data.token}
-        })
-      }
+      const {name} = response.data.data;
+      console.log(name);
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("username", name);
+      navigate("/home");
     }).catch(error =>{
       console.log(error);
     });
