@@ -4,6 +4,9 @@ import {Routes, Route, Navigate} from 'react-router-dom';
 import Register from './Register';
 import Home from './Home';
 import New from './New';
+import CategoryMan from './CategoryMan';
+import CategoryWomen from './CategoryWoman';
+import CategoryChildren from './CategoryChildren';
 
 
 function Main() {
@@ -14,6 +17,9 @@ function Main() {
                 <Route path='register' element={<Register/>}/>
                 <Route path='home' element={<Home/>}/>
                 <Route path='new' element={<New/>}/>
+                <Route path='men' element={<CategoryMan/>}/>
+                <Route path='women' element={<CategoryWomen/>}/>
+                <Route path='children' element={<CategoryChildren/>}/>
                 <Route path='*' element={<Navigate replace to="/" />} />
             </Route>
         </Routes>

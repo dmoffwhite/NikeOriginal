@@ -5,7 +5,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { json, Link, Outlet } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
+
 
 function Menu() {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
@@ -13,14 +15,18 @@ function Menu() {
     const navigate = useNavigate();
 
     const logOut = () => {
-      localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("username");
-      localStorage.removeItem("token");
-      navigate("/home");
-    } 
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("username");
+        localStorage.removeItem("token");
+        navigate("/login");
+        swal("Sesión cerrada", "Haz cerrado sesión!", "success");
+        
+    };
 
     return (
         <>
+           
+
             <div
                 className="m-banner"
                 style={{
@@ -47,51 +53,11 @@ function Menu() {
                             <Nav.Link as={Link} to="/new">
                                 Nuevos Lanzamientos
                             </Nav.Link>
-                            <NavDropdown
-                                title="Hombres"
-                                id="basic-nav-dropdown"
-                            >
-                                <NavDropdown.Item href="#action/3.1">
-                                    Ropa
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Calzado
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">
-                                    Accesorios
-                                </NavDropdown.Item>
-                            </NavDropdown>
+                            <Nav.Link as={Link} to="/men">Hombres</Nav.Link>
+                            <Nav.Link as={Link} to="/women">Mujeres</Nav.Link>
+                            <Nav.Link as={Link} to="/children">Niños</Nav.Link>
 
-                            <NavDropdown
-                                title="Mujeres"
-                                id="basic-nav-dropdown"
-                            >
-                                <NavDropdown.Item href="#action/3.1">
-                                    Ropa
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Calzado
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">
-                                    Accesorios
-                                </NavDropdown.Item>
-                            </NavDropdown>
-
-                            <NavDropdown title="Niños" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">
-                                    Ropa
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">
-                                    Calzado
-                                </NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">
-                                    Accesorios
-                                </NavDropdown.Item>
-                            </NavDropdown>
-
-                            <Nav.Link as={Link} to="/">
-                                SNKRS
-                            </Nav.Link>
+                            
                         </Nav>
                         <Nav>
                             <Form className="d-flex">
@@ -107,18 +73,24 @@ function Menu() {
                             </Form>
 
                             {isLoggedIn && (
-                                <NavDropdown
-                                    title="Cuenta"
-                                    id="basic-nav-dropdown"
-                                >
-                                    <NavDropdown.Item>
-                                        {username}
-                                        <noframes></noframes>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item onClick={logOut}>
-                                        Cerrar sesion
-                                    </NavDropdown.Item>
-                                </NavDropdown>
+                                <>
+                                    <NavDropdown
+                                        title="Cuenta"
+                                        id="basic-nav-dropdown"
+                                    >
+                                        <NavDropdown.Item>
+                                            {username.toUpperCase()}
+                                            <noframes></noframes>
+                                        </NavDropdown.Item>
+                                        <NavDropdown.Item onClick={logOut}>
+                                            Cerrar sesion
+                                        </NavDropdown.Item>
+                                    </NavDropdown>
+
+                                    <Nav.Link>
+                                        <img src="https://img.icons8.com/external-thin-kawalan-studio/24/null/external-cart-shopping-e-commerce-thin-kawalan-studio.png" />
+                                    </Nav.Link>
+                                </>
                             )}
                             {!isLoggedIn && (
                                 <NavDropdown
@@ -133,10 +105,6 @@ function Menu() {
                                     </NavDropdown.Item>
                                 </NavDropdown>
                             )}
-
-                            <Nav.Link>
-                                <img src="https://img.icons8.com/external-thin-kawalan-studio/24/null/external-cart-shopping-e-commerce-thin-kawalan-studio.png" />
-                            </Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

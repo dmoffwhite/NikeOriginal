@@ -24,3 +24,4 @@ Route::post('store_request', [StudentController::class, 'store']);
 Route::post('destroy', [StudentController::class, 'destroy']);
 Route::post('update', [StudentController::class, 'update']);
 
+

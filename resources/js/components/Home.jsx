@@ -1,6 +1,8 @@
 import React from "react";
 import { Image, Card, Col, Row, Button} from "react-bootstrap";
 import Footer from "./Footer";
+import { Link } from "react-router-dom";
+
 function Home() {
     return (
         <>
@@ -182,7 +184,7 @@ function Home() {
                     }}
                     >
                     <Card.Title>Hombre</Card.Title>
-                    <Button variant="light">Comprar</Button>{' '}
+                    <Button as={Link} to="/men" variant="light">Comprar</Button>{' '}
                     </div>
                 </Card>
                     <Card className="border-0" style={{ position: "relative" }}>
@@ -203,7 +205,7 @@ function Home() {
                         }}
                         >
                         <Card.Title>Mujer</Card.Title>
-                        <Button variant="light">Comprar</Button>{' '}
+                        <Button as={Link} to="/women" variant="light">Comprar</Button>{' '}
                         </div>
                     </Card>
 
@@ -226,7 +228,7 @@ function Home() {
                         }}
                         >
                         <Card.Title>Niñxs</Card.Title>
-                        <Button variant="light">Comprar</Button>{' '}
+                        <Button as={Link} to="/children" variant="light">Comprar</Button>{' '}
                         </div>
                     </Card>
                 </Row>
